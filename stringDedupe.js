@@ -11,13 +11,18 @@ const str2 = "helloo";
 const expected2 = "helo";
 
 function stringDedupe(str) {
+    // setup
     var res = "";
-
+    // work
+    // iterate thru str
     for (var i = 0; i < str.length; i++) {
+        // check if res has the element already
         if (!res.includes(str[i])) {
+            // no element we add to res
             res += str[i];
         }
     }
+    // result
     return res;
 }
 
@@ -43,15 +48,25 @@ const expected3 = "cba fed ihg";
 * string of words. Does NOT reverse the order of the words themselves.
 */
 function reverseWords(str) {
+    // setup
+    // split into array
     var arr = str.split(' ')
-    var res = ""
-
+    // empty array for return word
+    var resArr = []
+    // work
+    // iterate thru words array
     for (var i = 0; i < arr.length; i++) {
-
+        // set temp str to store reverse word
+        tempWord = ''
+        // iterate thru the word
         for (var j = arr[i].length - 1; j >= 0; j--) {
-            res += arr[i][j]
+            // store the reverse element to temp word
+            tempWord += arr[i][j]
         }
-        res += ' '
+    // after reverse the word we adding to result array
+    resArr.push(tempWord)
     }
-    return res;
+    // result
+    // result in array and join with space as statement
+    return resArr.join(' ')
 }
