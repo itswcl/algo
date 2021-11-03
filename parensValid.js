@@ -73,10 +73,31 @@ based on the order and amount of opening and closing pairs.
 */
 function bracesValid(str) {
     // SETUP
-    var stack = [] //use .push() and .pop()
-    var
+    var openingBraceStack = [] //use .push() and .pop()
+    var opens = "({["
+    var closeToOpen = {
+        ")": "(",
+        "}": "{",
+        "]": "["
+    }
 
     // WORK
-
+    for (var i = 0; i < str.length; i++) {
+        var currentChar = str[i]
+        // if statment check if currentChar is opening brace
+        if (opens.includes(currentChar)) {
+            openingBraceStack.push(currentChar);
+            // else if checks if current is a closing brace
+        } else if (currentChar in closeToOpen) {
+            // check value for key of current value is same as most recent value in stack
+            if (closeToOpen[currentChar] === openingBraceStack[openingBraceStack.length - 1]) {
+                // match we'll remove the recent value in stack
+                stack.pop();
+            } else {
+                return false
+            }
+        }
+    }
     // RETURN
+    return openingBraceStack.length === 0;
 }
