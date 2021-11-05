@@ -7,15 +7,21 @@
 const str1 = "   hello world     ";
 const expected1 = "hello world";
 
-/**
- * Trims any leading or trailing white space from the given str.
- * - Time: O(?).
- * - Space: O(?).
- * @param {string} str
- * @returns {string} The given string with any leading or trailing white space
- *    stripped.
- */
-function trim(str) {}
+function trim(str) {
+    var res = ""
+
+    for (var i = 0; i < str.length; i++) {
+    currentIndex = str[i]
+    nextIndex = str[i+1]
+
+    if (currentIndex === " " && nextIndex === " ") {
+        continue
+    } else {
+        res += currentIndex
+    }
+    }
+    return res.slice(1, res.length - 1);
+}
 
 /*****************************************************************************/
 
@@ -43,13 +49,19 @@ const strA4 = "silent";
 const strB4 = "listen";
 const expected4 = true;
 
-/**
- * Determines whether s1 and s2 are anagrams of each other.
- * Anagrams have all the same letters but in different orders.
- * - Time: O(?).
- * - Space: O(?).
- * @param {string} s1
- * @param {string} s2
- * @returns {boolean} Whether s1 and s2 are anagrams.
- */
-function isAnagram(s1, s2) {}
+function isAnagram(s1, s2) {
+    if (s1.length !== s2.length) {
+        return false
+    }
+
+    s1Dict = frequencyTableBuilder(s1)
+    s2Dict = frequencyTableBuilder(s2)
+    s1Keys = Object.keys(s1Dict)
+    for(var i = 0; i<s1Keys.length; i++){
+        if(s1Dict[s1Keys[i]] != s2Dict[s1Keys[i]]){
+            return false
+        }
+    }
+    return  true
+
+}
