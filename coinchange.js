@@ -17,6 +17,33 @@ const cents4 = 99;
 const expected4 = { quarter: 3, dime: 2, penny: 4 };
 
 function fewestCoinChange(cents) {
+    var dic = {}
+
+    if (cents > 24) {
+        remainder = cents % 25
+        dic.quarter = (cents - remainder) / 25
+        cents = remainder
+    }
+
+    if (cents > 9) {
+        remainder = cents % 10
+        dic.dime = (cents - remainder) / 10
+        cents = remainder
+    }
+
+    if (cents > 4) {
+        remainder = cents % 5
+        dic.nickel = (cents - remainder) / 5
+        cents = remainder
+    }
+
+    if (remainder > 0) {
+        dic.penny = remainder
+    }
+    return dic
+}
+
+function fewestCoinChange2(cents) {
     var dict={}
     var remainder = 0
     //quarter logic
@@ -46,8 +73,6 @@ function fewestCoinChange(cents) {
         dict['penny']=ps
     }
     return dict
-
-
 }
 
 /*****************************************************************************/
