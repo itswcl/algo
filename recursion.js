@@ -3,7 +3,7 @@
 */
 
 const nums1 = [1, 2, 3];
-const expected1 = 6;
+// const expected1 = 6;
 
 /**
  * Add params if needed for recursion
@@ -13,7 +13,28 @@ const expected1 = 6;
  * @param {Array<number>} nums
  * @returns {number} The sum of the given nums.
  */
-function sumArr(nums) {}
+function sumArr(nums, i=0) {
+    var sum = 0
+    if (i == nums.length){
+        return 0
+    }
+    else{
+        sum += nums[i] + sumArr(nums, i+1)
+    }
+    return sum
+
+}
+
+function countDown(num) {
+    // base case
+    if (num === 0) {
+        console.log("lift off")
+    } else {
+    // recursive case
+        console.log(num)
+        countDown(num - 1)
+    }
+}
 
 /*****************************************************************************/
 
@@ -41,4 +62,14 @@ const expected3 = 0;
  * @param {number} num
  * @returns {number}
  */
-function recursiveSigma(num) {}
+function recursiveSigma(num) {
+    // var sum = 0
+    if(num < 1) {
+        return 0
+    } else {
+        return Math.floor(num) + recursiveSigma(num-1)
+        // return Math.floor(num) +recursiveSigma(Math.floor(num)-1)
+    }
+}
+
+console.log(recursiveSigma(-1))
