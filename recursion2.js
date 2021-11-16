@@ -77,13 +77,15 @@ const expected6 = 21;
  * @returns {number} The fibonacci number at the given position.
  */
 function fibonacci(num) {
-    if (num === 0) {
-        console.log("-----------STOP POINT-----------")
-        return 0;
-    } else if (num === 1) {
-        return 1;
-    } else {
-        console.log(`indexOne - ${num-1} indexTwo - ${num-2}`)
+    if (num === 0 || num === 1) {
+        // console.log("-----------STOP POINT-----------")
+        return num;
+    }
+    // else if (num === 1) {
+    //     return 1;
+    // }
+    else {
+        // console.log(`indexOne - ${num-1} indexTwo - ${num-2}`)
         return fibonacci(num-1) + fibonacci(num-2)
     }
 }
