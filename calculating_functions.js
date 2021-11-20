@@ -21,7 +21,6 @@ function eight(fun) {let value = 8;if (fun) {return fun(value);} else {return va
 function nine(fun) {let value = 9;if (fun) {return fun(value);} else {return value;}}
 
 function plus(insideNum) {
-    // if
     return function(outsideNum) {
         return outsideNum + insideNum
     }
