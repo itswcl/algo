@@ -20,17 +20,17 @@ function sortedInsert(head, data) {
     let current = prev.next
 
     while (current) {
+        // case - insert node to the tail
         if (current.data < newNode.data && current.next === null) {
             current.next = newNode;
             return head;
         }
 
+        // check thru the list til meet old data > new data
         if (current.data < newNode.data) {
             prev = prev.next;
             current = current.next;
-        }
-
-        if (current.data > newNode.data) {
+        } else {
             newNode.next = current;
             prev.next = newNode;
             return head;
