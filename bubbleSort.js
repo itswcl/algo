@@ -26,6 +26,7 @@ function bubbleSort(nums) {
                 nums[j] = nums[j + 1]
                 nums[j + 1] = temp;
                 // swap 1 line without temp
+                //    a    ,     b      =     b     ,    a
                 // [nums[j], nums[j+1]] = [nums[j+1], nums[j]];
             }
         }
