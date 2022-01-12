@@ -16,6 +16,24 @@
         you run selection sort for 10 iterations only to display the first 10
         sorted items...
 */
-const myArr = [3,2,9,5,1,4,8]
+const myArr = [3, 2, 9, 5, 1, 4, 8]
 
-function selectionSort(arr){ }
+function selectionSort(arr) {
+    for (let i = 0; i < arr.length - 1; i++) {
+
+        for (let j = i + 1; j < arr.length; j++) {
+
+            // if (arr[j] < arr[i]) {
+                //     // const temp = arr[i]
+                //     // arr[i] = arr[j]
+                //     // arr[j] = temp;
+                //     [arr[i], arr[j]] = [arr[j], arr[i]]
+                // }
+                arr[j] < arr[i] ? [[arr[i], arr[j]] = [arr[j], arr[i]]] : ""
+        }
+    }
+    console.log(arr);
+    return arr;
+}
+
+selectionSort(myArr)
