@@ -30,6 +30,8 @@ function selectionSort(arr) {
             //      this is the swap arr[i] >< arr[j]
             //     [arr[i], arr[j]] = [arr[j], arr[i]]
             // }
+            // arr[i] as default small number
+            // compare arr[i+1] if less we update small number
             arr[j] < arr[i] ? [[arr[i], arr[j]] = [arr[j], arr[i]]] : ""
         }
     }
@@ -38,4 +40,4 @@ function selectionSort(arr) {
 }
 
 selectionSort(myArr)
-selectionSort([3,14,4,6,67,3,-2412,2,3,4,54,5,3])
+selectionSort([3, 14, 4, 6, 67, 3, -2412, 2, 3, 4, 54, 5, 3])
