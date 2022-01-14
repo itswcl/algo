@@ -26,7 +26,29 @@ var testArr = [88, 22, 44, 12, 99, 111, 9, 15, 49];
 
 // main recursive function that will be passed in mergeSortedArrays(left, right)
 // create a new sorted arr based on the given arr being recursively split and merged.
-function mergeSort(arr) { }
+
+/**
+ * Creates a new sorted array based on the given nums being recursively split
+ * and merged.
+ * Best: O(n log(n)) linearithmic.
+ * Avg: O(n log(n)) linearithmic.
+ * Worst: O(n log(n)) linearithmic.
+ * @param {Array<number>} nums
+ * @returns {Array<number>} A New sorted array.
+ */
+function mergeSort(nums) {
+    if (nums.length === 1) {
+        // return once we hit an array with a single item
+        return nums;
+    }
+
+    const middleIdx = Math.floor(nums.length / 2);
+    const left = nums.slice(0, middleIdx);
+    const right = nums.slice(middleIdx);
+    const sortedLeft = mergeSort(left);
+    const sortedRight = mergeSort(right);
+    return merge(sortedLeft, sortedRight);
+}
 
 
 
@@ -50,34 +72,49 @@ function mergeSortedArrays(arr1, arr2) {
     let leftIdx = 0;
     let rightIdx = 0;
     // if (arr1Len > arr2Len) {
-        while (arr1Len) {
-            if (arr1[leftIdx] < arr2[rightIdx]) {
-                mergeArr.push(arr1[leftIdx])
-                leftIdx++
-            } else {
-                mergeArr.push(arr2[rightIdx])
-                rightIdx++
-            }
-            arr1Len--;
+    while (arr1Len) {
+        if (arr1[leftIdx] < arr2[rightIdx]) {
+            mergeArr.push(arr1[leftIdx])
+            leftIdx++
+        } else {
+            mergeArr.push(arr2[rightIdx])
+            rightIdx++
         }
+        arr1Len--;
+    }
     // } else {
-        while (arr2Len) {
-            if (arr1[leftIdx] < arr2[rightIdx]) {
-                mergeArr.push(arr1[leftIdx])
-                leftIdx++
-            } else {
-                mergeArr.push(arr2[rightIdx])
-                rightIdx++
-            }
-            arr2Len--;
+    while (arr2Len) {
+        if (arr1[leftIdx] < arr2[rightIdx]) {
+            mergeArr.push(arr1[leftIdx])
+            leftIdx++
+        } else {
+            mergeArr.push(arr2[rightIdx])
+            rightIdx++
         }
-    //}
-
-
+        arr2Len--;
+    }
+    // }
     return mergeArr;
 }
+
+function mergeSortedArrays2(arr1, arr2) {
+    let sort = [];
+
+    while (arr1.length && arr2.length) {
+        if (arr1[0] < arr2[0]) {
+            // shift pops from the front, not ideal.
+            sort.push(arr1.shift());
+        } else {
+            sort.push(arr2.shift());
+        }
+    }
+
+    // takes remainders and squashes them together in cases with one array
+    return sort.concat(arr1.slice().concat(arr2.slice()));
+}
+
 console.log(mergeSortedArrays(arrLeft, arrRight));
-console.log(mergeSortedArrays([1,2,3], [4,5,6,7]));
+console.log(mergeSortedArrays([1, 2, 3], [4, 5, 6, 7]));
 // //steps:
 //     1. create a merge function to merge two already sorted arrays into a single sorted array
 //       - you do NOT need to work in place, ok to use a new array
