@@ -36,33 +36,35 @@ function insertionSort(arr) {
         const temp = arr[i];
         for (let j = i - 1; j >= 0; j--) {
             if (temp < arr[j]) {
-                tempJ = arr[j]
-                arr[j] = arr[j + 1];
-                arr[j + 1] = tempJ
+                // tempJ = arr[j]
+                // arr[j] = arr[j + 1];
+                // arr[j + 1] = tempJ
+                [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]]
             }
+/* ---------- another way doing the insertion
+            if (arr[y] > temp) {
+                arr[y + 1] = arr[y];
+                if (y == 0) {
+                    arr[y] = temp;
+                    // break;
+                }
+            }
+            else {
+                // console.log("else at y:", y)
+                arr[y + 1] = temp;
+                break; //because everything else on the left is already pre-sorted
+                // once we put the temp in we have to break out of its loop; otherwise it will continue
+            }
+*/
         }
     }
     return arr;
 }
 
-function insertionSort2(arr) {
-    for (let i = 1; i < arr.length; i++) {
-        let tempValue = arr[i]
-        let j = i - 1
-        while (j >= 0 && tempValue < arr[j]) {
-            let temp = arr[j]
-            arr[j] = arr[j + 1]
-            arr[j + 1] = temp
-            j--
-        }
-    }
-    return arr
-}
-
 console.log(insertionSort([3, 5, 2, 1, 0]))
 console.log(insertionSort([3, 0]))
 console.log(insertionSort([0]))
-console.log(insertionSort([]))
+console.log(insertionSort([4, 342, 34, -3, 12, -4, -6]))
 console.log(insertionSort([1, 2, 3, 4, 5]))
 console.log(insertionSort([5, 4, 3, 2, 1]))
 console.log(insertionSort([5, 4, 0, 2, 1]))
