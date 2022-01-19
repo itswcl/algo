@@ -30,4 +30,41 @@ const expected3 = [];
  *    sorted and contains only the shared values between the two arrays
  *    deduped.
  */
-function orderedIntersection(sortedA, sortedB) { }
+
+
+function orderedIntersection(sortedA, sortedB) {
+  let shortArr = [];
+  let longArr = [];
+  let newArr = [];
+
+  if (sortedA.length < sortedB.length) {
+    shortArr = sortedA;
+    longArr = sortedB;
+  } else {
+    shortArr = sortedB;
+    longArr = sortedA;
+  }
+
+  //checks each index in short array as current num
+  for (let i = 0; i < shortArr.length; i++) {
+    //currentNum is value of position in array at index
+    const currentNum = shortArr[i];
+    //while looking at ONE value of short array we will compare will all values of long array
+    for (let j = 0; j < longArr.length; j++) {
+      //this is the value in the long array that we are comparing, each time the loop executes it moves up the array
+      const compareNum = longArr[j];
+      //if the number from short array has equal value to num from long AND num short array NOT EQUAL to the last value added to the new Array
+      if (currentNum == compareNum && currentNum != newArr[newArr.length - 1]) {
+        //if it is the same, but not a duplicate, add
+        newArr.push(currentNum);
+      }
+    }
+  }
+
+  return console.log(newArr);
+}
+
+
+orderedIntersection(arrA1, arrB1);
+orderedIntersection(arrA2, arrB2);
+orderedIntersection(arrA3, arrB3);
