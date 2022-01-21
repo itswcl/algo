@@ -28,9 +28,18 @@
 // output: [0,1]
 
 function twoSums(arr, target) {
+    // let numbersObj = {}
+    // for (let i = 0; i < arr.length; i++) {
+    //     let currentNum = arr[i]
+    //     let numberChecking = target - currentNum;
+    //     numbersObj[currentNum] = i;
+    //     if (numberChecking in numbersObj) {
+    //         return [numbersObj[numberChecking], numbersObj[currentNum]]
+    //     }
+    // }
+
     for (let i = 0; i < arr.length; i++) {
         const currentNum = arr[i];
-
         for (let j = i + 1; j < arr.length; j++) {
             const secondNum = arr[j]
             if (currentNum + secondNum === target) {
