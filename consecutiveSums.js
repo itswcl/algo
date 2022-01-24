@@ -38,6 +38,7 @@ function findConsecutiveSums(arr, target) {
                 tempResult.push(arr[tempIdx])
                 tempIdx++
 
+
                 if (tempTotal === target) {
                     result.push([...tempResult])
                 }
