@@ -25,6 +25,7 @@ const output1 = [
 
 const searchFor2 = {
     lastName: "Smith",
+    age: 25
 };
 const output2 = [
     { firstName: "John", lastName: "Smith", age: 25 },
@@ -38,15 +39,38 @@ const output2 = [
 
 function findObjectsFilter(searchObj, items) {
     let result = []
-    let searchKey = Object.keys(searchObj)
+    let searchKeys = Object.keys(searchObj)
 
-    for (item of items) {
-        if (item[searchKey] === searchObj[searchKey]) {
-            result.push(item)
+    for (const item of items) {
+        for (const key of searchKeys) {
+
+            if (item[key] === searchObj[key]) {
+                result.push(item)
+            }
         }
     }
 
     return result;
+}
+
+
+function findObjectsFilter2(searchObj, items) {
+    // put all the keys for the search object into an array
+    const searchKeysArr = Object.keys(searchObj);
+
+    // filter the items
+    return items.filter(item => {
+        // for each item in items
+        // for every key in searchKeysArr
+        for (const key of searchKeysArr) {
+            // if the key doesn't exist
+            if (!item.hasOwnProperty(key) || item[key] !== searchObj[key]) {
+                return false;
+            }
+        }
+        // if the for loop returns no false, return true
+        return true;
+    })
 }
 
 
