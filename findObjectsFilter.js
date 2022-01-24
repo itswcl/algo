@@ -1,5 +1,7 @@
 // findObjectsFilter(searchFor, itemsArr)
 
+const { object } = require("prop-types");
+
 // given a 'search for' object with primitive values and a list of objects
 // return a new list of objects containing the same key value pairs as the search for
 
@@ -28,8 +30,24 @@ const output2 = [
     { firstName: "John", lastName: "Smith", age: 25 },
     { firstName: "Bob", lastName: "Smith", age: 27 },
 ];
+// object.keys(obj) [key, key, key]
+// object.values(obj) [value, value, value]
+/* Object.entries(obj) return 2 dimensional [
+    [key, value],]*/
+// obj.hasOwnProperty(key) // check key return true/false
 
-function findObjectsFilter(searchObj, items) { }
+function findObjectsFilter(searchObj, items) {
+    let result = []
+    let searchKey = Object.keys(searchObj)
+
+    for (item of items) {
+        if (item[searchKey] === searchObj[searchKey]) {
+            result.push(item)
+        }
+    }
+
+    return result;
+}
 
 
 console.log(findObjectsFilter(searchFor1, items));
