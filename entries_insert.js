@@ -5,6 +5,8 @@
   Do not include key value pairs from the given objects prototype (these are included by default when looping over an object's keys)
 */
 
+const { object } = require("prop-types");
+
 const obj1 = {
     name: "Pizza",
     calories: 9001,
@@ -25,11 +27,17 @@ const expected2 = [
     ["age", 13],
 ];
 
-obj1.__proto__ = obj2;
+// obj1.__proto__ = obj2; // obj1 inherited obj2 // only for in shows all in obj1 // method wont show the linking
 
-function entries(obj) { }
-console.log(entries(obj1));
-console.log(entries(obj2));
+function entries(obj) {
+    let keyValuePairs = [];
+    for (const key in obj) {
+        keyValuePairs.push([key, obj[key]])
+    }
+    return keyValuePairs;
+}
+// console.log(entries(obj1));
+// console.log(entries(obj2));
 
 // ==================================================
 
@@ -56,6 +64,27 @@ const expectedB =
     "INSERT INTO users (first_name, last_name, age, is_admin) VALUES ('John', 'Doe', 30, false);";
 // Explanation: no quotes around the int or the bool, technically in SQL the bool would become a 0 or 1, but don't worry about that here.
 
-function insert(tableName, columnValuePairs) { }
+function insert(tableName, columnValuePairs) {
+    const keyAndValues = entries(columnValuePairs);
+    let keys = ""
+    let values = ""
+
+    for (let i = 0; i < keyAndValues.length; i++) {
+        const key = keyAndValues[i][0]
+        const value = keyAndValues[i][1]
+        if (i === 0) {
+            keys += `${key}`
+            typeof value === 'string'
+                ? values += `'${value}'`
+                : values += `${value}`
+        } else {
+            keys += `, ${key}`
+            typeof value === 'string'
+                ? values += `,'${value}'`
+                : values += `, ${value}`
+        }
+    }
+    return `INSERT INTO ${tableName} (${keys}) VALUES (${values});`
+}
 console.log(insert(table, insertData1));
-// console.log(insert(table, insertData2)); // BONUS
+console.log(insert(table, insertData2)); // BONUS
