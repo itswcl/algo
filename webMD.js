@@ -71,22 +71,31 @@ Output: []
 
 
 function webMD(ailments, meds) {
+    // setup the result array
     const result = []
+    // go thru the each med
     for (const med of meds) {
+        // get the list of symptoms from the med
         const symptoms = med.treatableSymptoms;
-        let hasSymptoms = false;
+        // default med has the ailments
+        let hasSymptoms = true;
 
+        // in each med we go thru the ailments
         for (let i = 0; i < ailments.length; i++) {
+            // check 1 ailment at a time
             const ailment = ailments[i]
-            if (symptoms.includes(ailment)) {
-                hasSymptoms = true;
-            } else {
+            // if the med has NO single ailment
+            if (!symptoms.includes(ailment)) {
+                // turn flag to false
                 hasSymptoms = false
+                // stop running
                 break;
             }
         }
+        // if the symptoms still true we add to our result
         if (hasSymptoms) result.push(med.name);
     }
+    // return the result
     return result
 }
 
