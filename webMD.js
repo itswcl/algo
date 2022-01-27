@@ -70,5 +70,26 @@ Output: []
 */
 
 
-function webMD(ailments, meds) { }
+function webMD(ailments, meds) {
+    const result = []
+    for (const med of meds) {
+        const symptoms = med.treatableSymptoms;
+        let hasSymptoms = false;
 
+        for (let i = 0; i < ailments.length; i++) {
+            const ailment = ailments[i]
+            if (symptoms.includes(ailment)) {
+                hasSymptoms = true;
+            } else {
+                hasSymptoms = false
+                break;
+            }
+        }
+        if (hasSymptoms) result.push(med.name);
+    }
+    return result
+}
+
+console.log(webMD(["pain", "inflammation", "depression"], medications))
+console.log(webMD(["pain"], medications))
+console.log(webMD(["existential dread"], medications))
