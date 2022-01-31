@@ -23,8 +23,48 @@ const callback3 = (elem) => false;
 const expected3 = [];
 
 
-function dropIt1(arr, callback) {}
+function dropIt(arr, callback) {
+    // with for loop
+    // iterate the for loop with same index each time
+    for (let i = 0; i < arr.length; i) {
+        // once call back comes true we stop
+        if (callback(arr[i])) {
+            break
+        } else {
+        // if true we take first element out
+            arr.shift()
+        }
+    }
 
-console.log(dropIt(arr1, callback2));
+    /* second way with for loop
+    for (let i = 0; i < arr.length; i++) {
+        if (!callback(arr[i])) {
+            // only iterate when call back is false
+            for (let j = 0; j < arr.length - 1; j++) {
+                // switch all element from front to back
+                [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+            }
+            // pop out the last element from the array
+            arr.pop();
+        } else {
+            // once meets true return the altered arr
+            return arr;
+        }
+    }*/
+
+    // recursive
+    // Base Case
+    // if (arr.length<1) {return [];}
+    // If Condition is false
+    // if (!callback(arr[0])) {
+    //     // remove first item in array
+    //     arr.shift();
+    //     dropIt(arr, callback);
+    // }
+
+    return arr;
+}
+
+console.log(dropIt(arr1, callback1));
 console.log(dropIt(arr2, callback2));
-console.log(dropIt(arr3, callback2));
+console.log(dropIt(arr3, callback3));
