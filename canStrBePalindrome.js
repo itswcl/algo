@@ -56,14 +56,34 @@ const expected6 = false;
 */
 
 function canBecomePalindrome(str) {
+    if (str.length === 0) return false;
+    if (str.length === 1) return true;
+
+    let strMap = {};
+
+    for (let i = 0; i < str.length; i++) {
+        const letter = str[i]
+        strMap[letter]
+            ? strMap[letter]++
+            : strMap[letter] = 1;
+    }
+
+    for (const key in strMap) {
+        strMap[key] = strMap[key] % 2
+    }
+    if (str.length % 2 === 1) {
+
+    } else {
+
+    }
 
 }
 
-canBecomePalindrome(str1);
-canBecomePalindrome(str2);
-canBecomePalindrome(str3);
-canBecomePalindrome(str4);
-canBecomePalindrome(str5);
+// console.log(canBecomePalindrome(str1));
+// console.log(canBecomePalindrome(str2));
+console.log(canBecomePalindrome(str3));
+console.log(canBecomePalindrome(str4));
+console.log(canBecomePalindrome(str5));
 
 // console.log(canBecomePalindrome(str1) === expected1); // false
 // console.log(canBecomePalindrome(str2) === expected2); // true
