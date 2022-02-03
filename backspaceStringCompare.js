@@ -44,28 +44,33 @@ const expected4 = false;
 // Explanation: S becomes "c" while T becomes "b".
 
 function backspaceStringCompare(S, T) {
-    return removeHashTags(S) == removeHashTags(T)
+    return removeHashTags(S) === removeHashTags(T)
 
 }
 
 function removeHashTags(str) {
+    // turn str to a array w/o hash and pop with hash
     let arr = []
+    // turn arr back to str
+    // let result = ""
+
+    // traverse thr str
     for (char of str) {
-        if (char != "#") {
-            arr.push(char)
-        }
-        else {
-            arr.pop()
-        }
+        // check if not hash
+        char != "#"
+            // letter we add to array
+            ? arr.push(char)
+            // hash then we pop one element from letter pervious
+            : arr.pop()
     }
-    let result = ""
-    for (char of arr) {
-        result += char
-    }
-    return result
+    // iterate thr arr turn to str
+    // for (char of arr) {
+    //     result += char
+    // }
+    return arr.join("")
 }
 
 console.log(backspaceStringCompare(S1, T1))
-// console.log(backspaceStringCompare(S2, T2))
-// console.log(backspaceStringCompare(S3, T3))
-// console.log(backspaceStringCompare(S4, T4))
+console.log(backspaceStringCompare(S2, T2))
+console.log(backspaceStringCompare(S3, T3))
+console.log(backspaceStringCompare(S4, T4))
