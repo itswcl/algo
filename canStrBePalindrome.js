@@ -68,9 +68,8 @@ function canBecomePalindrome(str) {
             : strMap[letter] = 1;
     }
 
-    for (const key in strMap) {
-        strMap[key] = strMap[key] % 2
-    }
+    for (const key in strMap) { strMap[key] = strMap[key] % 2 };
+
     if (str.length % 2 === 1) {
 
     } else {
