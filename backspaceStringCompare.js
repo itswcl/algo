@@ -55,7 +55,7 @@ function removeHashTags(str) {
     // let result = ""
 
     // traverse thr str
-    for (char of str) {
+    for (let char of str) {
         // check if not hash
         char != "#"
             // letter we add to array
@@ -64,7 +64,7 @@ function removeHashTags(str) {
             : arr.pop()
     }
     // iterate thr arr turn to str
-    // for (char of arr) {
+    // for (let char of arr) {
     //     result += char
     // }
     return arr.join("")

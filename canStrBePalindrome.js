@@ -56,33 +56,58 @@ const expected6 = false;
 */
 
 function canBecomePalindrome(str) {
-    if (str.length === 0) return false;
-    if (str.length === 1) return true;
+  // if empty false
+  if (str.length === 0) return false;
+  // if 1 letter true
+  // if (str.length === 1) return true;
 
-    let strMap = {};
+  // letter count
+  let strMap = {};
 
-    for (let i = 0; i < str.length; i++) {
-        const letter = str[i]
-        strMap[letter]
-            ? strMap[letter]++
-            : strMap[letter] = 1;
-    }
-
-    for (const key in strMap) { strMap[key] = strMap[key] % 2 };
-
-    if (str.length % 2 === 1) {
-
+  // get the count of letter with odd/even check
+  for (let i = 0; i < str.length; i++) {
+    // letter as key in strMap
+    const letter = str[i]
+    // check if exist
+    if (strMap[letter]) {
+      // exist value + 1 and modulo to have even/odd number check
+      strMap[letter] = (strMap[letter] + 1) % 2
     } else {
-
+      // no exist we put value as 1
+      strMap[letter] = 1;
     }
+  }
+  // if str length is even number
+  if (str.length % 2 === 0) {
+    // go thru strMap
+    for (const key in strMap) {
+      // as long as 1 One's it is not palindrome
+      if (strMap[key] === 1) return false;
+    }
+    // all 0s it is palindrome
+    return true;
+  } else {
+    // if str length is odd, set the total for values in the map
+    let total = 0
+    // go thru the strMap
+    for (const key in strMap) {
+      // if the values is One we add up
+      if (strMap[key] === 1) {
+        total++
+      }
+    }
+    // if total is NOT 1 then it is not palindrome
+    return total === 1;
+  }
 
 }
 
-// console.log(canBecomePalindrome(str1));
-// console.log(canBecomePalindrome(str2));
+console.log(canBecomePalindrome(str1));
+console.log(canBecomePalindrome(str2));
 console.log(canBecomePalindrome(str3));
 console.log(canBecomePalindrome(str4));
 console.log(canBecomePalindrome(str5));
+console.log(canBecomePalindrome('aabbccdeaade'));
 
 // console.log(canBecomePalindrome(str1) === expected1); // false
 // console.log(canBecomePalindrome(str2) === expected2); // true
