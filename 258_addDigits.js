@@ -11,7 +11,7 @@ process
 10   --> 1+0     = 1
 1 is one digit then return
 */
-const addDigits = function (num) {
+const addDigits1 = function (num) {
     // base case if single digit
     if (num < 10) { return num }; // O(1)
 
@@ -34,3 +34,17 @@ const addDigits = function (num) {
     }
 };
 
+const addDigits2 = (num) => {
+    // 0
+    if (num === 0) return 0; // O(1)
+    // 9
+    if (num % 9 === 0) return 9; // O(1)
+    // rest of number
+    return num % 9 // O(1)
+}
+
+const addDigits3 = (num) => { // 1234
+    return num === 0
+        ? 0
+        : 1 + (num - 1) % 9 // (1 + (1234-1) % 9)
+}
