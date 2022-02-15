@@ -2,6 +2,7 @@
  * @param {number[]} nums
  * @return {number}
  */
+// come back for review later
 var maxSubArray = function (nums) {
     return findMax(nums, startPoint = 0, endPoint = nums.length - 1)
 };
