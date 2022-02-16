@@ -12,6 +12,7 @@ const search = (nums, target) => {
     // as long as left index not crossing right index
     while (leftIdx <= rightIdx) {
         // Mid pointer between left to right
+        // will update on each run with new mid pointer
         let midPointer = Math.floor((rightIdx - leftIdx) / 2 + leftIdx)
 
         // end case, once mid pointer value is the target
