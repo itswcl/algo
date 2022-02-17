@@ -2,7 +2,8 @@
 # binary search
 # post processing
 
-## template I
+# template I
+### Sqrt(x), guess number higher or lower, search in rotated sorted array
 ```js
 let left = 0; let right = nums.length - 1;
 while (left <= right) {
