@@ -14,6 +14,7 @@ var duplicateZeros = function (arr) {
         if (arr[i] === 0) {
 
             // stop if iterate thru last element
+            // edge case
             if (i === length - possibleDups) {
                 arr[length] = 0;
                 length--;
