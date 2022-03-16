@@ -18,7 +18,7 @@ var findMedianSortedArrays = function (nums1, nums2) {
     while (true) {
 
         // mid point for short array
-        let indexShort = Math.floor((left + right) / 2);
+        let indexShort = left + Math.floor((right - left) / 2);
         // half of index deduct whatever we took from short array
         let indexLong = half - indexShort - 2;
 
