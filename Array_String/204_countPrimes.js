@@ -45,4 +45,7 @@ const countPrimes = (n) => {
     }
     // return the length of true prime number
     return isPrime.filter((num) => num === true).length
+
+    // return isPrime.map((ele, i) => ele ? i : 0).reduce((a, b) => a + b) for prime number total
+
 }
