@@ -11,33 +11,32 @@
  * @return {number[]}
  */
 var largestValues = function (root) {
-    // if root is null
+    // if null just return []
     if (!root) return [];
-
-    // work on queue
-    const queue = [root];
-    // array to includes each level of max values
+    // default for values each row
     const maxValues = [];
 
-    // loop thru the current queue
-    while (queue.length > 0) {
-        // default the max as smallest int
-        let max = -Infinity
-        // loop the times based on the current queue size
-        let size = queue.length
+    // work
+    // we start from entire root
+    const queue = [root];
 
-        // iterate thur based on size
-        for (let i = 0; i < size; i++) {
-            // queue as FIFO we shift the first element in queue
+    // first loop for the row level
+    while(queue.length > 0) {
+        // size to represent the nodes in the row
+        let loopSize = queue.length;
+        // default max for each roll we iterate
+        let max = -Infinity;
+
+        for (let i = 0; i < loopSize; i++) {
+            // we shift the first in node
             const currentNode = queue.shift();
-            // max value as default and current node val
+            // compare max and current node value
             max = Math.max(max, currentNode.val)
-
-            // we add left and right into the queue
+            // we add right and left node to the queue for comparing
             if (currentNode.right) queue.push(currentNode.right);
             if (currentNode.left) queue.push(currentNode.left);
         }
-        // the size of loop over we add max into the result array
+        // we done comparing the max value in row we add the max to the result array
         maxValues.push(max);
     }
     return maxValues;
