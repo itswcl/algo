@@ -32,6 +32,7 @@ const findCrossSum = (nums, leftSide, midpoint, rightSide) => {
     // cant use 0 here because we have negative number in array
     let maxLeftSum = -Infinity;
     // the direction for the loop is
+    // *for crossmax we must count left from mid to left
     // <<<<<<<<<<<<<<<Start from midpoint and count backward
     for (let i = midpoint; i >= leftSide; i--) {
         // add up the number
@@ -46,6 +47,7 @@ const findCrossSum = (nums, leftSide, midpoint, rightSide) => {
     // cant use 0 here because we have negative number in array
     let maxRightSum = -Infinity;
     // the direction for the loop is
+    // *and count right from mid to right
     // start from midpoint and count forward >>>>>>>>>>>>>>>>>
     for (let i = midpoint + 1; i <= rightSide; i++) {
         // update sum
