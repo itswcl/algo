@@ -22,26 +22,26 @@ var maxSubArray = function (nums) {
     return findMax(nums, startPoint = 0, endPoint = nums.length - 1)
 };
 
-const findMax = (nums, leftSide, rightSide) => {
+const findMax = (nums, leftPoint, rightPoint) => {
     // base case 1 element left
-    if (leftSide === rightSide) {
-        return nums[leftSide]
+    if (leftPoint === rightPoint) {
+        return nums[leftPoint]
     }
 
     // [X,X,X,MIDPOINT,X,X,X]
-    let midPoint = Math.floor((leftSide + rightSide) / 2)
+    let midPoint = Math.floor((leftPoint + rightPoint) / 2)
 
     // [X,X,X,MID]
-    let leftSum = findMax(nums, leftSide, midPoint);
+    let leftSum = findMax(nums, leftPoint, midPoint);
     // [X,X,X]
-    let rightSum = findMax(nums, midPoint + 1, rightSide);
+    let rightSum = findMax(nums, midPoint + 1, rightPoint);
 
     // [X,X,X,MIDPOINT,X,X,X]
-    let crossSum = findCrossSum(nums, leftSide, midPoint, rightSide)
+    let crossSum = findCrossSum(nums, leftPoint, midPoint, rightPoint)
     return Math.max(leftSum, rightSum, crossSum)
 }
 
-const findCrossSum = (nums, leftSide, midpoint, rightSide) => {
+const findCrossSum = (nums, leftPoint, midpoint, rightPoint) => {
     let sum = 0;
 
     // cant use 0 here because we have negative number in array
@@ -49,7 +49,7 @@ const findCrossSum = (nums, leftSide, midpoint, rightSide) => {
     // the direction for the loop is
     // *for crossmax we must count left from mid to left
     // <<<<<<<<<<<<<<<Start from midpoint and count backward
-    for (let i = midpoint; i >= leftSide; i--) {
+    for (let i = midpoint; i >= leftPoint; i--) {
         // add up the number
         sum += nums[i];
         // compare the updated sum with maxLeftSum
@@ -64,7 +64,7 @@ const findCrossSum = (nums, leftSide, midpoint, rightSide) => {
     // the direction for the loop is
     // *and count right from mid to right
     // start from midpoint and count forward >>>>>>>>>>>>>>>>>
-    for (let i = midpoint + 1; i <= rightSide; i++) {
+    for (let i = midpoint + 1; i <= rightPoint; i++) {
         // update sum
         sum += nums[i];
         // compared updated sum and maxRightSum
