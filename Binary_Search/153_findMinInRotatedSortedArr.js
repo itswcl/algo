@@ -25,9 +25,11 @@ const findMin = (nums) => {
         // check the direction we want to go
         if (nums[mid] > nums[0]) {
             // if nums mid > nums 0 then we move left index to right as new left
+            // as the smallest in the right side
             left = mid + 1
         } else {
             // if nums mid < nums 0 then we move right index to left as new right
+            // as the smallest in the left side
             right = mid - 1;
         }
     }
