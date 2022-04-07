@@ -11,24 +11,32 @@
  * @return {boolean}
  */
 var hasCycle = function (head) {
-    // floyd cycle finding algorithm
-    let runner = head;
-    while (runner && runner.next) {
+    // current to race with head
+    let current = head;
+    // current and next are true
+    while (current && current.next) {
+        // start running head and current
+        // head as the slow one
         head = head.next;
-        runner = runner.next.next;
-        if (head === runner) return true;
+        // current as the fast one
+        current = current.next.next;
+        // if both meet then we find cycle
+        if (head === current) return true;
     }
-    //     // hash table if 2 then it's cycle
+    //     // set a map
     //     const hash = new Map();
-    //     let runner = head;
+    //     // set runner
+    //     let cur = head;
 
-    //     // if (!head || !head.next) return false;
-    //     while (runner && head.next) {
-    //         if (hash.has(runner)) {
-    //             return true;
-    //         }
-    //         hash.set(runner, hash.get(runner)+1)
-    //         runner = runner.next;
+    //     // if current and current next true
+    //     while (cur && cur.next) {
+    //         // if the hash already has the key
+    //         if (hash.has(cur)) return true;
+
+    //         // set the hash key pair
+    //         hash.set(cur, hash.get(cur)+1)
+    //         // move to next
+    //         cur = cur.next;
     //     }
     return false;
 };
