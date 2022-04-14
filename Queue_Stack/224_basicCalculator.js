@@ -16,6 +16,8 @@ var calculate = function (s) {
 
             // the while loop to create the digit number based on increase of i
             while (s[i] >= '0' && s[i] <= '9') {
+                // first run will be sigle digit due to num = 0 * 10
+                // when next number come it will be whatever pervious digit * 10 + current num
                 num = (num * 10) + (s[i] - '0');
                 i++
             }
