@@ -35,11 +35,12 @@ const invertTreeQueue = (root) => {
     // iterate as long as queue not empty
     while (queue.length > 0) {
         // initial current root
-        let cur = queue.pop();
+        const curNode = queue.shift();
         // switch the right and left;
-        let temp = cur.left;
-        cur.left = cur.right;
-        cur.right = temp;
+        [curNode.left, curNode.right] = [curNode.right, curNode.left]
+        // let temp = cur.left;
+        // cur.left = cur.right;
+        // cur.right = temp;
 
         // check cur still not end we push the right/left back to queue
         if (cur.right) queue.push(cur.right);
