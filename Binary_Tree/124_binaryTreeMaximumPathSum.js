@@ -11,26 +11,26 @@
  * @return {number}
  */
 var maxPathSum = function (root) {
-    // initial the first max number based root.val
     let max = root.val;
 
     const findSums = (node) => {
-        // base casue if node is null
+        // dont wanna add negative value so ingnore as zero
         if (!node) return 0;
 
-        // recursive call left and right max if negative we giv as 0
+        // keep finding the child max from left and right
+        // max 0 as if met negative we dont need the negative
         let leftMax = Math.max(findSums(node.left), 0);
         let rightMax = Math.max(findSums(node.right), 0);
 
-        // compared the max and current node + left + right child
+        // update the max each time we find the path
         max = Math.max(max, node.val + leftMax + rightMax);
 
-        // each run return the path of sum from node and left or node and right
-        return Math.max(node.val + leftMax, node.val + rightMax)
+        // only able to return 1 side to parent because we not allowed to split into 2 path
+        // only choose the max sum side
+        return Math.max(leftMax + node.val, rightMax + node.val)
     }
 
-    // run helper function to find sum in each path
+
     findSums(root)
-    // return the result
     return max;
 };
