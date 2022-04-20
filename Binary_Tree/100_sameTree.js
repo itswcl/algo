@@ -34,13 +34,16 @@ var isSameTree = function (p, q) {
     }
 
     return true;
-    // // check null
-    // if (!p && !q) return true;
-    // if (!p || !q) return false;
-    // // check val
-    // if (p.val !== q.val) return false;
-    // // DFS recursion
-    // const left = isSameTree(p.left, q.left);
-    // const right = isSameTree(p.right, q.right);
-    // return left && right;
+
+    // check both null
+    if (!p && !q) return true;
+    // check only 1 side null
+    if (!p || !q) return false;
+    // pass 2 test then check if node vale
+    if (p && q && p.val === q.val) {
+        // pass node val then check both left and right side
+        return isSameTree(p.left, q.left) && isSameTree(p.right, q.right)
+    }
+    // default as not same node
+    return false;
 }
