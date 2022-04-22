@@ -5,16 +5,23 @@
 // come back for review later
 // ----------------- iterate dynamic programming ----O(N)--------------
 var maxSubArr = (nums) => {
-    // initial current Sum and the max
-    let curSum = 0, max = -Infinity;
-    // iterate thur the number
+    // initial current sum and max
+    let curSum = 0;
+    // default max as first element to compared
+    let curMax = nums[0];
+
+    // now iterate thur the nums
     for (let i = 0; i < nums.length; i++) {
-        // update current Sum comparing current number and current number plus sum
-        curSum = Math.max(nums[i], nums[i] + curSum);
-        // if current sum greater than the max we up date max
-        curSum > max ? max = curSum : max;
+        const curNum = nums[i];
+        // temp sum could possibly replace the currentSum if its greater than current number
+        const tempSum = curSum + curNum;
+        // each time we compute the currentSum either currentNum or tempareSum whoever bigger
+        curSum = Math.max(curNum, tempSum);
+
+        // once we found the biggest curSum then we compared with current Max whoever bigger
+        curMax = Math.max(curMax, curSum)
     }
-    return max;
+    return curMax;
 }
 
 // --------------------------- divide Conquer --------------------------
