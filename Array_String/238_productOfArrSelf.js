@@ -3,21 +3,40 @@
  * @return {number[]}
  */
 var productExceptSelf = function (nums) {
-    let result = []
+    const products = [];
 
+    // build up prefix list into result
+    let prefix = 1;
     for (let i = 0; i < nums.length; i++) {
-        i === 0
-            ? result[i] = 1
-            : result[i] = result[i - 1] * nums[i - 1]
+        // update by index with prefix number
+        products[i] = prefix;
+        // update prefix multiply by element from the position in nums
+        prefix *= nums[i]
     }
 
-    let rightEle = 1;
+    // update the result by "postfix" and "backward"
+    let postfix = 1;
     for (let i = nums.length - 1; i >= 0; i--) {
-        result[i] = result[i] * rightEle;
-        rightEle *= nums[i]
+        products[i] = postfix * products[i];
+        // update postfix multiply by element from the position in nums
+        postfix *= nums[i]
     }
+    return products;
+    // let result = []
 
-    return result;
+    // for (let i = 0; i < nums.length; i++) {
+    //     i === 0
+    //         ? result[i] = 1
+    //         : result[i] = result[i - 1] * nums[i - 1]
+    // }
+
+    // let rightEle = 1;
+    // for (let i = nums.length - 1; i >= 0; i--) {
+    //     result[i] = result[i] * rightEle;
+    //     rightEle *= nums[i]
+    // }
+
+    // return result;
     //     // have left count and right count array with all 1s because first ele from left and from right are 1
     //     // result array for left ele times right ele
     //     let left = new Array(nums.length).fill(1);
