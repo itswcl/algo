@@ -2,19 +2,34 @@
  * @param {number[]} prices
  * @return {number}
  */
- const maxProfit = function(prices) {
-    // refactor with smallest and diff
-    let smallest = prices[i]
-    // if we dont find maxProfit
-    let diff = 0
+const maxProfit = function (prices) {
+    // initial maxProfit and cheapestDay as first day
+    let maxProfit = 0;
+    let cheapestDay = prices[0];
 
+    // start iterate thru from idx 1 because we initial 0 as our first lowest
     for (let i = 1; i < prices.length; i++) {
-        const price = prices[i]
+        const price = prices[i];
 
-        smallest = Math.min(smallest, price)
-        diff = Math.min(diff, smallest - price)
+        // each iteration we will compare the minimum price if lower we update
+        cheapestDay = Math.min(cheapestDay, price)
+        // we also track the max profit each day by default from 0
+        // cheapestDay follow the minimum update
+        maxProfit = Math.max(maxProfit, price - cheapestDay)
     }
-    return -diff;
+    return maxProfit
+    // // refactor with smallest and diff
+    // let smallest = prices[i]
+    // // if we dont find maxProfit
+    // let diff = 0
+
+    // for (let i = 1; i < prices.length; i++) {
+    //     const price = prices[i]
+
+    //     smallest = Math.min(smallest, price)
+    //     diff = Math.min(diff, smallest - price)
+    // }
+    // return -diff;
 
     // // default a smallest number and difference
     // let smallest = prices[0];               // 7 > 1
