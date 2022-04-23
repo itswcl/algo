@@ -1,23 +1,27 @@
 var mergeTwoLists = function (list1, list2) {
-    // initial head and keep the tail for use
+    // initial empty head
     let head = new ListNode();
+    // set the tail as head because we moving the tail not head
     let tail = head;
 
-    // iterate thru as long as both has nodes
+    // as long as 2 list has nodes
     while (list1 && list2) {
-        // check the node val whoever smaller
-        if (list1.val < list2.val) {
-            // replace the tail next to the smaller list
-            tail.next = list1;
-            // update list to list next
-            list1 = list1.next;
-        } else {
+        // we check whoever val smaller and link their listnode in tail then move listnode to next
+        if (list1.val > list2.val) {
             tail.next = list2;
             list2 = list2.next;
+        } else {
+            tail.next = list1;
+            list1 = list1.next;
         }
-        // each iterate we move tail to end node
+        // in the end we'll move the tail to end of node
         tail = tail.next
     }
+    // after iterate one of list could still have node left we will add to end tail of next
+    tail.next = list1 ? list1 : list2
+
+    // then we return the head.next because head is empty node to link the real nodes
+    return head.next
 
     // link the reminder list from either list2 or list1
     tail.next = list1 === null ? list2 : list1;
