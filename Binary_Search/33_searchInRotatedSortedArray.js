@@ -17,7 +17,9 @@ var search = function (nums, target) {
             return midPointer;
 
             // check if the numbers is ascending
-        } else if (nums[midPointer] >= nums[leftIdx]) { // nums[3] - 7 >= nums[0] - 4
+        }
+
+        if (nums[midPointer] >= nums[leftIdx]) { // nums[3] - 7 >= nums[0] - 4
             // check if the target on the left side
             if (nums[leftIdx] <= target && target < nums[midPointer]) { // nums[0] <= 0 && 0 < nums[3]
                 rightIdx = midPointer - 1;

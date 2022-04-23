@@ -1,20 +1,23 @@
 function reverseList(head) {
-    // become last node
-    let prev = null
-    // set runner
+    // the last next will be null because we turn the >>>null to null<<<
+    let prev = null;
+    // we start from head
     let current = head;
 
-    while (current) {
-        // temp for current next node
+    // keep iterate thur the current next
+    while(current) {
+        // get the next from current node
         let next = current.next;
-        // repoint the current next to prev
+        // set the next to the prev
         current.next = prev;
-        // current node will be come prev
+        // the prev will be the current node
         prev = current;
-        // traverse to "next" node;
+        // update the current to next
         current = next;
     }
+    // return the prev since the head is the prev => null <<< head
     return prev;
+
     // function reverseList(list) {
     // // TODO: Your awesome code here
     // if (list === null) return null;
