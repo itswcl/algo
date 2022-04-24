@@ -4,28 +4,30 @@
  * @return {number}
  */
 var characterReplacement = function (s, k) {
-    // freq table, start, maxResult,
-    let count = {}, windowStart = 0, maxChar = 0, maxResult = 0
+    // initial the letter count
+    const letterCount = {};
+    // initial left right pointer also the max result
+    // we need to track the max letter as well to count the k limit
+    let left = 0, right = 0, maxChar = 0, maxResult = 0;
 
-    // moving the rightpoint to right
-    for (let windowEnd = 0; windowEnd < s.length; windowEnd++) {
-        const endLetter = s[windowEnd];
+    while (right < s.length) {
+        const currentRight = s[right];
+        // adding letter into map
+        letterCount[currentRight] ? letterCount[currentRight]++ : letterCount[currentRight] = 1;
+        // track the max count
+        maxChar = Math.max(maxChar, letterCount[currentRight])
 
-        count[endLetter] ? count[endLetter]++ : count[endLetter] = 1;
-        // update max char we only care the max char for repeat
-        maxChar = Math.max(maxChar, count[endLetter])
-
-        // check the window out of limit in the char of k
-        if (windowEnd - windowStart + 1 - maxChar > k) {
-            const startLetter = s[windowStart]
-            // decrease the start letter
-            count[startLetter]--;
-            // shift the window to right
-            windowStart++
+        // if the size of left to right minus max letter greater than k limit
+        // we need to move our left by 1
+        if (right - left + 1 - maxChar > k) {
+            const currentLeft = s[left];
+            letterCount[currentLeft]--
+            left++
         }
-
-        // update the max result each time it's valid
-        maxResult = Math.max(maxResult, windowEnd - windowStart + 1)
+        // update the result max substring
+        maxResult = Math.max(maxResult, right - left + 1)
+        // increase right pointer
+        right++
     }
-    return maxResult
+    return maxResult;
 };
